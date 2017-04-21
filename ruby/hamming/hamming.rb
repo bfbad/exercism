@@ -1,16 +1,23 @@
 class Hamming
- 
   def self.compute(a,b)
-    strand1 = a.scan
-    strand2 = b.scan
-    counter = 0
-    strand1.each do |i|
-      if strand1[i] != strand2[i]
-        counter++
-      end
+    if a == b
+      return 0
     end
-    counter
+    strand1 = a.chars
+    strand2 = b.chars
+    raise ArgumentError, 'Strand length not the same' unless strand1.length == strand2.length
+    counter = 0
+    distance = 0
+    strand1.each do |check|
+      if check != strand2[counter]
+        distance += 1
+      end
+        counter += 1
+    end
+    distance
   end
 end
 
-Hamming.compute("A", "B")
+module BookKeeping
+  VERSION = 3 # Where the version number matches the one in the test.
+end
