@@ -6,15 +6,8 @@ class Hamming
     strand1 = a.chars
     strand2 = b.chars
     raise ArgumentError, 'Strand length not the same' unless strand1.length == strand2.length
-    counter = 0
-    distance = 0
-    strand1.each do |check|
-      if check != strand2[counter]
-        distance += 1
-      end
-        counter += 1
-    end
-    distance
+    strand1 = strand1.zip(strand2)
+    distance = strand1.count{|x| x[0]!=x[1]}
   end
 end
 
