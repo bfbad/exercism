@@ -1,16 +1,11 @@
 class Raindrops
+
   def self.convert(x)
-    factors = calculateFactors(x);
     value = ''
-    factors.each do |check|
-      case check
-        when 3
-          value << "Pling"
-        when 5
-          value << "Plang"
-        when 7
-          value << "Plong"
-      end
+    calculateFactors(x).each do |check|
+      if SOUNDS.key?(check)
+        value << SOUNDS[check]
+      end 
     end 
     value.empty? ? x.to_s : value
   end
@@ -26,6 +21,9 @@ class Raindrops
     end
     return factorsArray
   end
+  
+  # Define sounds. New sounds can be added to this hash
+  SOUNDS = {3 => "Pling", 5 => "Plang", 7 => "Plong"}
 
 end 
 
