@@ -6,14 +6,8 @@ class Pangram
     phrase.downcase!
     # convert to array
     phrase_array = phrase.chars
-    # make sure each letter is in the array. If one is missing, immediately return false
-    ("a".."z").each do |x|
-      unless phrase_array.include? x
-        return false
-      end
-    end
-    # if it makes it to the end of the alphabet, return true
-    true
+    # make sure each letter is in the array.
+    ("a".."z").all? { |letter| phrase_array.include?(letter)}
   end
 end
 
