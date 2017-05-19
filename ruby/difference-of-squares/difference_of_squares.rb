@@ -7,21 +7,13 @@ class Squares
   # given a natural number @number, return the square of the sum of all 
   # numbers 1 to @number. 
   def square_of_sum
-    value = 0
-    (1..@number).each do |x|
-      value = value + x
-    end
-    value = value*value
+    (1..@number).sum**2 # a**b = a^b
   end 
   
   # given a natural number @number, return the sum of all the squares of
   # all numbers 1 to @number.
   def sum_of_squares
-    value = 0
-    (1..@number).each do |x|
-      value = value + (x*x)
-    end 
-    return value
+    (1..@number).map{|n| n*n}.sum
   end
   
   # return the difference between the square_of_sum and the sum_of_squares
