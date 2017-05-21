@@ -68,6 +68,13 @@ class PangramTest < Minitest::Test
     refute result, "Expected false, got: #{result.inspect}. #{phrase.inspect} is NOT a pangram"
   end
 
+  def test_simple_thing_but_wrong
+    # skip
+    str = 'xe'
+    result = Pangram.pangram?(str)
+    refute result, "Expected false, got: #{result.inspect}. #{str.inspect} is NOT a pangram"
+  end
+
   # Problems in exercism evolve over time, as we find better ways to ask
   # questions.
   # The version number refers to the version of the problem you solved,
