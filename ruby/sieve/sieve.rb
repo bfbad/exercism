@@ -1,19 +1,20 @@
 class Sieve
 
-  # initialize the object with a "test array" consisting of a hash of all the values between 2 and number 
+  # initialize the object with a "test array" consisting of a value of true for any number that is a multiple
   def initialize(number)
-    @test_array = []
+    @max = number
+    @test_array = [nil, nil]
     (2..number).each do |x|
-      @test_array.push({:number => x, :is_a_multiple => false})
+      @test_array.push(false)
     end
   end
   
   # return all primes included in the test array
   def primes
     result = []
-    @test_array.each do |x|
-      if x[:is_a_multiple] == false
-        result.push x[:number]
+    (2..@max).each do |x|
+      if @test_array[x] == false
+        result.push(x)
         update_multiples(x)
       end
     end
@@ -23,12 +24,13 @@ class Sieve
   private 
 
   # based on the current hash value, update @test_array to flag any multiples of the current_hash[:number]
-  def update_multiples(current_hash)
-    @test_array.select{ |hash| hash[:number] % current_hash[:number] == 0 }.each do |x|
-      x[:is_a_multiple] = true
+  def update_multiples(current_number)
+    (current_number..@max).each do |x|
+      if x % current_number == 0
+        @test_array[x] = true
+      end
     end
   end
-
 end
 
 module BookKeeping
