@@ -5,7 +5,12 @@ class Sieve
     @max = number
     @test_array = [nil, nil]
     (2..number).each do |x|
-      @test_array.push(false)
+      case x
+        when x%2 == 0 
+          @test_array.push(true)
+        else
+          @test_array.push(false)
+      end
     end
   end
   
